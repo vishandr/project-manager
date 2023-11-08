@@ -6,19 +6,38 @@ import NoProjectSelected from './components/NoProjectSelected';
 export default function App() {
   const [isAddingNewProject, setIsAddingNewProject] = useState(false)
 
+  const [projectState, setProjectState] = useState({
+    selectedProjectId: undefined,
+    projects: []
+  })  
+
   const handleAddNewProject = () => {
-    setIsAddingNewProject(true)
+    setProjectState(prevState => {
+      return {
+        ...prevState,
+        selectedProjectId: null
+      }
+    })
   };
+  // const handleAddNewProject = () => {
+  //   setIsAddingNewProject(true)
+  // };
 
   const handleCancelNewProject = () => {
-    setIsAddingNewProject(false)
-  }
+    setProjectState(prevState => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined
+      }
+    })
+  };
+  
 
   return (
     <main className='h-screen my-8 flex gap-8'>
       <Sidebar onAddNewProject={handleAddNewProject}/>
-      {isAddingNewProject && <NewProject onCancel={handleCancelNewProject}  />}
-      {!isAddingNewProject && <NoProjectSelected onAddNewProject={handleAddNewProject}/>}
+      {projectState.selectedProjectId === null && <NewProject onCancel={handleCancelNewProject}  />}
+      {projectState.selectedProjectId === undefined && <NoProjectSelected onAddNewProject={handleAddNewProject}/>}
     </main>
   );
 }
