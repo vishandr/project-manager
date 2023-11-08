@@ -29,17 +29,17 @@ export default function App() {
   
   function handleAddProject(projectData) {
     setProjectState(prevState => {
-      const id = prevState.projects.length === 0 ? 1 : prevState.projects[0].id + 1;
+      const id = prevState.projects.length === 0 ? 1 : prevState.projects[prevState.projects.length-1].id + 1;
 
       const newProject = {
         ...projectData,
         id: id
       }
-      
+
       return {
         ...prevState,
         projects: [...prevState.projects, newProject],
-        // selectedProjectId: project.id
+        selectedProjectId: undefined
       }
     })
   }
@@ -47,7 +47,7 @@ export default function App() {
 
   return (
     <main className='h-screen my-8 flex gap-8'>
-      <Sidebar onAddNewProject={handleAddNewProject}/>
+      <Sidebar onAddNewProject={handleAddNewProject} projects={projectState.projects}/>
       {projectState.selectedProjectId === null && <NewProject onSave={handleAddProject} onCancel={handleCancelNewProject}  />}
       {projectState.selectedProjectId === undefined && <NoProjectSelected onAddNewProject={handleAddNewProject}/>}
     </main>

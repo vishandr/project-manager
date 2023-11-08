@@ -13,7 +13,6 @@ const NewProject = ({ onCancel, onSave }) => {
       dueDate: dueDate.current.value
     }
     onSave(data);
-    onCancel();
   }
 
   return (
