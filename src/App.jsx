@@ -18,7 +18,7 @@ export default function App() {
     <main className='h-screen my-8 flex gap-8'>
       <Sidebar onAddNewProject={handleAddNewProject}/>
       {isAddingNewProject && <NewProject onCancel={handleCancelNewProject}  />}
-      {!isAddingNewProject && <NoProjectSelected />}
+      {!isAddingNewProject && <NoProjectSelected onAddNewProject={handleAddNewProject}/>}
     </main>
   );
 }
