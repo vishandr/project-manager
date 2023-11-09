@@ -28,6 +28,7 @@ const NewProject = ({ onCancel, onSave }) => {
       title: enteredTitle,
       description: enteredDescription,
       dueDate: enteredDueDate,
+      tasks: []
     };
 
     onSave(enteredData);

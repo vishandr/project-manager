@@ -10,6 +10,25 @@ export default function App() {
     projects: [],
   });
 
+  const addNewTask = (task) => {
+    setProjectState((prevState) => {
+      
+      return {
+        ...prevState,
+        projects: prevState.projects.map((item) => {
+          if (item.id === projectState.selectedProjectId) {
+            return {
+              ...item,
+              tasks: [task, ...item.tasks],
+            };
+          } else {
+            return item;
+          }
+        }),
+      };
+    });
+  };
+
   const handleAddNewProject = () => {
     setProjectState((prevState) => {
       return {
@@ -61,7 +80,9 @@ export default function App() {
     setProjectState((prevState) => {
       return {
         ...prevState,
-        projects: prevState.projects.filter((project) => project.id !== prevState.selectedProjectId),
+        projects: prevState.projects.filter(
+          (project) => project.id !== prevState.selectedProjectId
+        ),
         selectedProjectId: undefined,
       };
     });
@@ -76,16 +97,17 @@ export default function App() {
     content = <NoProjectSelected onAddNewProject={handleAddNewProject} />;
   } else {
     const selectedProject = projectState.projects.find(
-      (project) => project.id === projectState.selectedProjectId
+      (item) => item.id === projectState.selectedProjectId
     );
     content = (
       <SelectedProject
         project={selectedProject}
         onDeleteProject={handleDeleteProject}
+        onAddTask={addNewTask}
       />
     );
   }
-
+  // console.log(projectState);
   return (
     <main className='h-screen my-8 flex gap-8'>
       <Sidebar
