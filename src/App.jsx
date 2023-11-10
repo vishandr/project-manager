@@ -12,7 +12,6 @@ export default function App() {
 
   const addNewTask = (task) => {
     setProjectState((prevState) => {
-      
       return {
         ...prevState,
         projects: prevState.projects.map((item) => {
@@ -23,6 +22,24 @@ export default function App() {
             };
           } else {
             return item;
+          }
+        }),
+      };
+    });
+  };
+
+  const deleteTask = (taskId) => {
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        projects: prevState.projects.map((project) => {
+          if (project.id === projectState.selectedProjectId) {
+            return {
+              ...project,
+              tasks: project.tasks.filter((task) => task.id !== taskId),
+            };
+          } else {
+            return project;
           }
         }),
       };
@@ -104,6 +121,7 @@ export default function App() {
         project={selectedProject}
         onDeleteProject={handleDeleteProject}
         onAddTask={addNewTask}
+        onDeleteTask={deleteTask}
       />
     );
   }

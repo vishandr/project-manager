@@ -1,12 +1,17 @@
 import { useRef } from 'react';
 
-export default function Tasks({ onAddTask, taskList }) {
+export default function Tasks({ onAddTask, taskList, onDeleteTask }) {
   const inputRef = useRef();
-console.log(taskList);
+
   function addTask() {
     const taskText = inputRef.current.value;
     onAddTask({ task: taskText, id: Math.random() });
     inputRef.current.value = '';
+    inputRef.current.focus()
+  }
+
+  function deleteDask(taskId) {
+    onDeleteTask(taskId);
   }
 
   let content = (
@@ -20,7 +25,12 @@ console.log(taskList);
         {taskList.map((task, index) => (
           <li key={index} className='flex justify-between my-4'>
             <span>{task.task}</span>
-            <button className='text-stone-700 hover:text-red-600'>clear</button>
+            <button
+              onClick={() => deleteDask(task.id)}
+              className='text-stone-700 hover:text-red-600'
+            >
+              Clear
+            </button>
           </li>
         ))}
       </ul>
