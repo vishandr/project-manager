@@ -8,7 +8,6 @@ const NewProject = ({ onCancel, onSave }) => {
   const description = useRef();
   const dueDate = useRef();
 
-
   function handleSubmit() {
     const enteredTitle = title.current.value;
     const enteredDescription = description.current.value;
@@ -35,12 +34,6 @@ const NewProject = ({ onCancel, onSave }) => {
   }
 
   return (
-    <>
-      <Modal ref={modal} buttonCaption='OK'>
-        <h2 className='text-xl font-bold text-stone-700 my-4'>invalid input</h2>
-        <p className='text-stone-600 mb-4'>Ooops... Looks like you forgot to enter a value</p>
-        <p className='text-stone-600 mb-4'>Please make sure you provide a valid value for every input field</p>
-      </Modal>
       <div className='w-[35rem] mt-16'>
         <menu className='flex items-center justify-end gap-4 my-4'>
           <li>
@@ -66,7 +59,6 @@ const NewProject = ({ onCancel, onSave }) => {
           <Input ref={dueDate} type='date' label='Due Date' />
         </div>
       </div>
-    </>
   );
 };
 

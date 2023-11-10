@@ -1,8 +1,10 @@
 # React + Vite
+#Project manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple React application for managing your ToDo tasks.
+It allows to create different projects and add task to them. When task is done you can delete it, as well as delete full project.
 
-Currently, two official plugins are available:
+Created with React + Vite.
+Uses States, Refs, customs components.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Styled with [Tailwind CSS](https://tailwindcss.com/) 
